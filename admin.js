@@ -47,6 +47,7 @@
         setVal('introBadgeInput', s.intro.badge); setVal('introTitleInput', s.intro.title);
         setVal('introSubtitleInput', s.intro.subtitle); setVal('introDescInput', s.intro.description);
         setVal('introProfileImg', s.intro.profileImage);
+        setVal('introSkillsInput', (s.intro.skills || []).join(', '));
         setVal('introOtherTasks', (s.intro.otherTasks || []).join('\n'));
         setVal('introVideoInput', s.intro.video);
         setVal('introGalleryInput', (s.intro.gallery || []).join('\n'));
@@ -149,6 +150,7 @@
         config.slides.intro.subtitle = getVal('introSubtitleInput');
         config.slides.intro.description = getVal('introDescInput');
         config.slides.intro.profileImage = getVal('introProfileImg');
+        config.slides.intro.skills = getVal('introSkillsInput').split(',').map(s => s.trim()).filter(Boolean);
         config.slides.intro.otherTasks = getVal('introOtherTasks').split('\n').filter(Boolean);
         config.slides.intro.video = getVal('introVideoInput');
         config.slides.intro.gallery = getVal('introGalleryInput').split('\n').filter(Boolean);
@@ -233,6 +235,9 @@
         document.getElementById('exportBtn').addEventListener('click', () => { collectAll(); const b = new Blob([JSON.stringify(config, null, 2)], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'ppt-config.json'; a.click(); showToast('Exported ✓'); });
         document.getElementById('importBtn').addEventListener('click', () => document.getElementById('importFile').click());
         document.getElementById('importFile').addEventListener('change', e => { const f = e.target.files[0]; if (!f) return; const r = new FileReader(); r.onload = ev => { try { config = JSON.parse(ev.target.result); saveConfig(config); populateAllFields(); renderDynamicEditors(); renderThemePicker(); renderAnimPicker(); renderSpeedPicker(); showToast('Imported ✓'); } catch (err) { alert('Invalid JSON'); } }; r.readAsText(f); });
+
+        // PPTX Download
+        document.getElementById('downloadPptxBtn').addEventListener('click', () => { collectAll(); saveConfig(config); exportToPPTX(); });
 
         // Add buttons
         document.getElementById('addBrand').addEventListener('click', () => { config.slides.intro.brands.push({ name: '', platforms: '', color: '#00cec9', tasks: [] }); renderBrands(); });
