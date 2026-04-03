@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Department — Annual Business Plan & Review FY 2026-27</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Navigation -->
+    <nav class="slide-nav" id="slideNav">
+        <div class="nav-left">
+            <span class="nav-brand">DIGITAL DEPT.</span>
+            <span class="nav-divider">|</span>
+            <span class="nav-subtitle">FY 2026-27</span>
+        </div>
+        <div class="nav-center">
+            <span class="slide-counter" id="slideCounter">01 / 16</span>
+        </div>
+        <div class="nav-right">
+            <button class="nav-btn" id="prevBtn" aria-label="Previous slide">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button class="nav-btn" id="nextBtn" aria-label="Next slide">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6 6"/></svg>
+            </button>
+            <button class="nav-btn fullscreen-btn" id="fullscreenBtn" aria-label="Toggle fullscreen">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Slides Container -->
+    <div class="slides-wrapper" id="slidesWrapper">
+
+        <!-- SLIDE 1: Title -->
+        <section class="slide slide-title active" data-slide="1">
+            <div class="slide-bg-orbs">
+                <div class="orb orb-1"></div>
+                <div class="orb orb-2"></div>
+                <div class="orb orb-3"></div>
+            </div>
+            <div class="slide-content centered">
+                <div class="title-badge animate-in">ANNUAL BUSINESS PLAN & REVIEW</div>
+                <h1 class="hero-title animate-in delay-1">
+                    Digital Department<br>
+                    <span class="gradient-text">FY 2026-27</span>
+                </h1>
+                <p class="hero-subtitle animate-in delay-2">Graphic Design & Video Production — Individual Performance Review</p>
+                <div class="title-meta animate-in delay-3">
+                    <div class="meta-item">
+                        <span class="meta-label">Presented by</span>
+                        <span class="meta-value">Aman Kumar</span>
+                    </div>
+                    <div class="meta-divider"></div>
+                    <div class="meta-item">
+                        <span class="meta-label">Role</span>
+                        <span class="meta-value">Graphic Designer & Video Editor</span>
+                    </div>
+                    <div class="meta-divider"></div>
+                    <div class="meta-item">
+                        <span class="meta-label">Date</span>
+                        <span class="meta-value">April 2026</span>
+                    </div>
+                </div>
+                <div class="scroll-hint animate-in delay-4">
+                    <span>Press → or click to navigate</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6 6"/></svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: Agenda -->
+        <section class="slide slide-agenda" data-slide="2">
+            <div class="slide-bg-orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
+            <div class="slide-content">
+                <div class="section-label animate-in">OVERVIEW</div>
+                <h2 class="slide-heading animate-in delay-1">What We'll Cover Today</h2>
+                <div class="agenda-grid animate-in delay-2">
+                    <div class="agenda-card" data-num="01">
+                        <div class="agenda-icon">📊</div>
+                        <h3>Year-on-Year Comparison</h3>
+                        <p>Performance metrics, achievements & gaps from last FY vs current FY</p>
+                    </div>
+                    <div class="agenda-card" data-num="02">
+                        <div class="agenda-icon">🚀</div>
+                        <h3>Business Plan FY27</h3>
+                        <p>Strategic design & video initiatives for next year's growth</p>
+                    </div>
+                    <div class="agenda-card" data-num="03">
+                        <div class="agenda-icon">🔍</div>
+                        <h3>SWOT Analysis</h3>
+                        <p>Strengths, weaknesses, opportunities & threats assessment</p>
+                    </div>
+                    <div class="agenda-card" data-num="04">
+                        <div class="agenda-icon">🎯</div>
+                        <h3>Projections & Targets</h3>
+                        <p>Realistic output targets & quarterly milestones for FY 2026-27</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 3: Section Divider - YoY -->
+        <section class="slide slide-divider" data-slide="3">
+            <div class="slide-bg-orbs"><div class="orb orb-1"></div><div class="orb orb-3"></div></div>
+            <div class="slide-content centered">
+                <div class="divider-num animate-in">01</div>
+                <h2 class="divider-title animate-in delay-1">Year-on-Year<br><span class="gradient-text">Comparison</span></h2>
+                <p class="divider-sub animate-in delay-2">FY 2025-26 vs FY 2024-25 — Key Metrics & Achievements</p>
+            </div>
+        </section>
+
+        <!-- SLIDE 4: YoY Dashboard -->
+        <section class="slide slide-dashboard" data-slide="4">
+            <div class="slide-bg-orbs"><div class="orb orb-2"></div></div>
+            <div class="slide-content">
+                <div class="section-label animate-in">YEAR-ON-YEAR</div>
+                <h2 class="slide-heading animate-in delay-1">Design Output — At a Glance</h2>
+                <div class="metrics-grid animate-in delay-2">
+                    <div class="metric-card">
+                        <div class="metric-icon">🎨</div>
+                        <div class="metric-number" data-target="450">0</div>
+                        <div class="metric-label">Total Creatives Designed</div>
+                        <div class="metric-change positive">↑ 35% from last year</div>
+                        <div class="metric-bar"><div class="metric-fill" style="--fill: 85%"></div></div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">🎬</div>
+                        <div class="metric-number" data-target="78">0</div>
+                        <div class="metric-label">Videos Produced & Edited</div>
+                        <div class="metric-change positive">↑ 52% from last year</div>
+                        <div class="metric-bar"><div class="metric-fill" style="--fill: 72%"></div></div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">📱</div>
+                        <div class="metric-number" data-target="320">0</div>
+                        <div class="metric-label">Social Media Posts Designed</div>
+                        <div class="metric-change positive">↑ 28% from last year</div>
+                        <div class="metric-bar"><div class="metric-fill" style="--fill: 78%"></div></div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">⚡</div>
+                        <div class="metric-number suffix-hrs" data-target="4">0</div>
+                        <div class="metric-label">Avg. Turnaround Time</div>
+                        <div class="metric-change positive">↓ 40% faster than last year</div>
+                        <div class="metric-bar"><div class="metric-fill" style="--fill: 90%"></div></div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">📄</div>
+                        <div class="metric-number" data-target="45">0</div>
+                        <div class="metric-label">Brand Collaterals Created</div>
+                        <div class="metric-change positive">↑ 20% from last year</div>
+                        <div class="metric-bar"><div class="metric-fill" style="--fill: 65%"></div></div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">🎞️</div>
+                        <div class="metric-number" data-target="35">0</div>
+                        <div class="metric-label">Reels & Shorts Produced</div>
+                        <div class="metric-change new-badge">NEW this year</div>
+                        <div class="metric-bar"><div class="metric-fill" style="--fill: 55%"></div></div>
+                    </div>
+                </div>
+                <p class="slide-footnote animate-in delay-3">* Numbers are representative — update with your actual data</p>
+            </div>
+        </section>
+
+        <!-- SLIDE 5: Key Achievements -->
+        <section class="slide slide-achievements" data-slide="5">
+            <div class="slide-bg-orbs"><div class="orb orb-1"></div><div class="orb orb-3"></div></div>
+            <div class="slide-content">
+                <div class="section-label animate-in">YEAR-ON-YEAR</div>
+                <h2 class="slide-heading animate-in delay-1">Key Achievements This Year</h2>
+                <div class="achievements-list animate-in delay-2">
+                    <div class="achievement-item">
+                        <div class="achievement-check">✓</div>
+                        <div class="achievement-text">
+                            <h4>Brand Consistency Overhaul</h4>
+                            <p>Maintained 100% brand guideline adherence across all digital & print platforms for all group brands</p>
+                        </div>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-check">✓</div>
+                        <div class="achievement-text">
+                            <h4>Template System Created</h4>
+                            <p>Designed reusable social media templates reducing production time by ~35% for recurring content</p>
+                        </div>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-check">✓</div>
+                        <div class="achievement-text">
+                            <h4>Video Content Launch</h4>
+                            <p>Initiated Reels & Shorts production — driving 2x engagement compared to static posts</p>
+                        </div>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-check">✓</div>
+                        <div class="achievement-text">
+                            <h4>Skill Upgrades</h4>
+                            <p>Learned motion graphics (After Effects), AI-powered design tools (Midjourney, Firefly), and advanced color grading</p>
+                        </div>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-check">✓</div>
+                        <div class="achievement-text">
+                            <h4>Cross-Platform Adaptation</h4>
+                            <p>Designed content optimized for Instagram, YouTube, Facebook, LinkedIn, Website & Print — all from single concepts</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 6: Gaps & Learnings -->
+        <section class="slide slide-gaps" data-slide="6">
+            <div class="slide-bg-orbs"><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+            <div class="slide-content">
+                <div class="section-label animate-in">YEAR-ON-YEAR</div>
+                <h2 class="slide-heading animate-in delay-1">Gaps & Learnings</h2>
+                <div class="gaps-grid animate-in delay-2">
+                    <div class="gap-card">
+                        <div class="gap-icon">⏱️</div>
+                        <h4>Deadline Management</h4>
+                        <p>Multiple urgent projects overlapping caused occasional delays. Need better prioritization framework.</p>
+                        <div class="gap-action">→ Implementing project tracker next year</div>
+                    </div>
+                    <div class="gap-card">
+                        <div class="gap-icon">📐</div>
+                        <h4>Limited Animation Skills</h4>
+                        <p>Couldn't deliver advanced motion graphics for some campaigns. Basic level only.</p>
+                        <div class="gap-action">→ Advanced AE course planned Q1 FY27</div>
+                    </div>
+                    <div class="gap-card">
+                        <div class="gap-icon">📊</div>
+                        <h4>Data-Driven Design Gap</h4>
+                        <p>Designs were based on intuition rather than analytics. Need to connect design decisions to performance data.</p>
+                        <div class="gap-action">→ Learning GA4 & social analytics Q2 FY27</div>
+                    </div>
+                    <div class="gap-card">
+                        <div class="gap-icon">🖼️</div>
+                        <h4>Stock Dependency</h4>
+                        <p>Heavy reliance on stock images/videos instead of brand-original content.</p>
+                        <div class="gap-action">→ Building original asset library</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 7: Section Divider - Business Plan -->
+        <section class="slide slide-divider" data-slide="7">
+            <div class="slide-bg-orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
+            <div class="slide-content centered">
+                <div class="divider-num animate-in">02</div>
+                <h2 class="divider-title animate-in delay-1">Business Plan<br><span class="gradient-text">FY 2026-27</span></h2>
+                <p class="divider-sub animate-in delay-2">Strategic Design & Video Initiatives for Growth</p>
+            </div>
+        </section>
+
+        <!-- SLIDE 8: Vision -->
+        <section class="slide slide-vision" data-slide="8">
+            <div class="slide-bg-orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+            <div class="slide-content centered">
+                <div class="section-label animate-in">MY VISION FOR FY27</div>
+                <h2 class="vision-quote animate-in delay-1">"From Creating Content<br>to <span class="gradient-text">Creating Impact</span>"</h2>
+                <div class="pillars-row animate-in delay-2">
+                    <div class="pillar-card">
+                        <div class="pillar-num">01</div>
+                        <h4>Performance-Driven Design</h4>
+                        <p>Design that converts, not just looks good</p>
+                    </div>
+                    <div class="pillar-card">
+                        <div class="pillar-num">02</div>
+                        <h4>Video-First Content</h4>
+                        <p>Short-form video dominance — Reels, Shorts, YT</p>
+                    </div>
+                    <div class="pillar-card">
+                        <div class="pillar-num">03</div>
+                        <h4>Brand Elevation</h4>
+                        <p>Premium look & feel across all touchpoints</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 9: Design Initiatives -->
+        <section class="slide slide-initiatives" data-slide="9">
+            <div class="slide-bg-orbs"><div class="orb orb-2"></div></div>
+            <div class="slide-content">
+                <div class="section-label animate-in">BUSINESS PLAN</div>
+                <h2 class="slide-heading animate-in delay-1">Graphic Design Initiatives</h2>
+                <div class="initiative-cards animate-in delay-2">
+                    <div class="initiative-card">
+                        <div class="init-header">
+                            <span class="init-icon">🎨</span>
+                            <span class="init-tag">EFFICIENCY</span>
+                        </div>
+                        <h4>Design System Creation</h4>
+                        <p>Standardized templates for social media, emailers, ads — ensuring brand consistency while enabling faster production</p>
+                        <div class="init-impact">
+                            <span class="impact-label">Expected Impact:</span>
+                            <span class="impact-value">40% faster content production</span>
+                        </div>
+                    </div>
+                    <div class="initiative-card">
+                        <div class="init-header">
+                            <span class="init-icon">🔬</span>
+                            <span class="init-tag">PERFORMANCE</span>
+                        </div>
+                        <h4>A/B Testing Creatives</h4>
+                        <p>Multiple design variants for ad campaigns — test, learn, optimize for better click-through rates</p>
+                        <div class="init-impact">
+                            <span class="impact-label">Expected Impact:</span>
+                            <span class="impact-value">Better CTR & ROAS on paid campaigns</span>
+                        </div>
+                    </div>
+                    <div class="initiative-card">
+                        <div class="init-header">
+                            <span class="init-icon">✨</span>
+                            <span class="init-tag">INNOVATION</span>
+                        </div>
+                        <h4>Motion Graphics Integration</h4>
+                        <p>Shift from static posts to animated/motion content across all social platforms</p>
+                        <div class="init-impact">
+                            <span class="impact-label">Expected Impact:</span>
+                            <span class="impact-value">2-3x more engagement on social media</span>
+                        </div>
+                    </div>
+                    <div class="initiative-card">
+                        <div class="init-header">
+                            <span class="init-icon">🤖</span>
+                            <span class="init-tag">AI-POWERED</span>
+                        </div>
+                        <h4>AI-Enhanced Workflows</h4>
+                        <p>Leverage Midjourney, Adobe Firefly, Runway ML for concept generation & rapid prototyping</p>
+                        <div class="init-impact">
+                            <span class="impact-label">Expected Impact:</span>
+                            <span class="impact-value">3x faster ideation & concept delivery</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 10: Video Initiatives -->
+        <section class="slide slide-initiatives" data-slide="10">
+            <div class="slide-bg-orbs"><div class="orb orb-1"></div><div class="orb orb-3"></div></div>
+            <div class="slide-content">
+                <div class="section-label animate-in">BUSINESS PLAN</div>
+                <h2 class="slide-heading animate-in delay-1">Video Production Initiatives</h2>
+                <div class="initiative-cards animate-in delay-2">
+                    <div class="initiative-card">
+                        <div class="init-header">
+                            <span class="init-icon">📱</span>
+                            <span class="init-tag">ORGANIC GROWTH</span>
+                        </div>
+                        <h4>Short-Form Video Factory</h4>
+                        <p>Systematic weekly Reels & Shorts production pipeline — trend-jacking, tutorials, product showcases</p>
+                        <div class="init-impact">
+                            <span class="impact-label">Target:</span>
+                            <span class="impact-value">8-10 Reels/Shorts per month</span>
+                        </div>
+                    </div>
+                    <div class="initiative-card">
+                        <div class="init-header">
+                            <span class="init-icon">🗣️</span>
+                            <span class="init-tag">TRUST BUILDING</span>
+                        </div>
+                        <h4>Client Testimonial Videos</h4>
+                        <p>Professional shot & edited testimonials from satisfied clients — the #1 sales enablement tool</p>
+                        <div class="init-impact">
+                            <span class="impact-label">Target:</span>
+                            <span class="impact-value">2-3 testimonials per month</span>
+                        </div>
+                    </div>
+                    <div class="initiative-card">
+                        <div class="init-header">
+                            <span class="init-icon">🎥</span>
+                            <span class="init-tag">CONVERSION</span>
+                        </div>
+                        <h4>Product/Service Showcase Videos</h4>
+                        <p>Cinematic product videos, service explainers & demo reels for website and ad campaigns</p>
+                        <div class="init-impact">
+                            <span class="impact-label">Target:</span>
+                            <span class="impact-value">2-3 showcase videos per month</span>
+                        </div>
+                    </div>
+                    <div class="initiative-card">
+                        <div class="init-header">
+                            <span class="init-icon">🎬</span>
+                            <span class="init-tag">BRAND BUILDING</span>
+                        </div>
+                        <h4>Behind-the-Scenes Content</h4>
+                        <p>Humanize the brand with BTS shoots, team moments, process reveals — builds community & employer brand</p>
+                        <div class="init-impact">
+                            <span class="impact-label">Target:</span>
+                            <span class="impact-value">4 BTS pieces per month</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 11: Design → Growth Connection -->
+        <section class="slide slide-flow" data-slide="11">
+            <div class="slide-bg-orbs"><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+            <div class="slide-content">
+                <div class="section-label animate-in">BUSINESS PLAN</div>
+                <h2 class="slide-heading animate-in delay-1">How Design Drives Business Growth</h2>
+                <div class="flow-chain animate-in delay-2">
+                    <div class="flow-node">
+                        <div class="flow-emoji">🎨</div>
+                        <span>Better Design Quality</span>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-node">
+                        <div class="flow-emoji">👁️</div>
+                        <span>Higher Brand Perception</span>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-node">
+                        <div class="flow-emoji">🤝</div>
+                        <span>Customer Trust</span>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-node">
+                        <div class="flow-emoji">📈</div>
+                        <span>Better Conversions</span>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-node highlight">
+                        <div class="flow-emoji">💰</div>
+                        <span>Revenue Growth</span>
+                    </div>
+                </div>
+                <div class="impact-examples animate-in delay-3">
+                    <div class="impact-row">
+                        <div class="impact-label-box">Better ad creatives</div>
+                        <div class="impact-arrow-sm">→</div>
+                        <div class="impact-result">Higher CTR → Lower CPC → Better ROAS</div>
+                    </div>
+                    <div class="impact-row">
+                        <div class="impact-label-box">Professional video content</div>
+                        <div class="impact-arrow-sm">→</div>
+                        <div class="impact-result">Higher engagement → More organic leads</div>
+                    </div>
+                    <div class="impact-row">
+                        <div class="impact-label-box">Consistent branding</div>
+                        <div class="impact-arrow-sm">→</div>
+                        <div class="impact-result">Brand recall → Repeat customers → LTV ↑</div>
+                    </div>
+                    <div class="impact-row">
+                        <div class="impact-label-box">Fast turnaround</div>
+                        <div class="impact-arrow-sm">→</div>
+                        <div class="impact-result">More campaigns → More conversion opportunities</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 12: Section Divider - SWOT -->
+        <section class="slide slide-divider" data-slide="12">
+            <div class="slide-bg-orbs"><div class="orb orb-1"></div><div class="orb orb-3"></div></div>
+            <div class="slide-content centered">
+                <div class="divider-num animate-in">03</div>
+                <h2 class="divider-title animate-in delay-1">SWOT<br><span class="gradient-text">Analysis</span></h2>
+                <p class="divider-sub animate-in delay-2">Strengths, Weaknesses, Opportunities & Threats</p>
+            </div>
+        </section>
+
+        <!-- SLIDE 13: SWOT Grid -->
+        <section class="slide slide-swot" data-slide="13">
+            <div class="slide-bg-orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
+            <div class="slide-content">
+                <div class="section-label animate-in">SWOT ANALYSIS</div>
+                <h2 class="slide-heading animate-in delay-1">Strategic Assessment</h2>
+                <div class="swot-grid animate-in delay-2">
+                    <div class="swot-card swot-s">
+                        <div class="swot-header">
+                            <span class="swot-letter">S</span>
+                            <span class="swot-title">Strengths</span>
+                        </div>
+                        <ul>
+                            <li>Multi-skilled: Design + Video Editing</li>
+                            <li>Adobe Suite mastery (Ps, Ai, Ae, Pr)</li>
+                            <li>Strong brand guideline understanding</li>
+                            <li>Fast learner — adapts to trends quickly</li>
+                            <li>Cross-platform design (Digital + Print)</li>
+                        </ul>
+                    </div>
+                    <div class="swot-card swot-w">
+                        <div class="swot-header">
+                            <span class="swot-letter">W</span>
+                            <span class="swot-title">Weaknesses</span>
+                        </div>
+                        <ul>
+                            <li>Limited advanced 3D/animation skills</li>
+                            <li>Heavy reliance on stock resources</li>
+                            <li>Multi-project prioritization challenges</li>
+                            <li>Need stronger analytics knowledge</li>
+                            <li>Original photography/videography limited</li>
+                        </ul>
+                    </div>
+                    <div class="swot-card swot-o">
+                        <div class="swot-header">
+                            <span class="swot-letter">O</span>
+                            <span class="swot-title">Opportunities</span>
+                        </div>
+                        <ul>
+                            <li>AI tools can 10x creative output</li>
+                            <li>Short-form video explosion — huge reach</li>
+                            <li>Motion design becoming industry standard</li>
+                            <li>UGC trend — low budget, high impact</li>
+                            <li>Personal branding for company on LinkedIn</li>
+                        </ul>
+                    </div>
+                    <div class="swot-card swot-t">
+                        <div class="swot-header">
+                            <span class="swot-letter">T</span>
+                            <span class="swot-title">Threats</span>
+                        </div>
+                        <ul>
+                            <li>AI-generated content competition rising</li>
+                            <li>Platform algorithm changes affect reach</li>
+                            <li>Feedback delays impact delivery timelines</li>
+                            <li>Design trends evolve rapidly</li>
+                            <li>Market expects higher quality, faster</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 14: Section Divider - Projections -->
+        <section class="slide slide-divider" data-slide="14">
+            <div class="slide-bg-orbs"><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+            <div class="slide-content centered">
+                <div class="divider-num animate-in">04</div>
+                <h2 class="divider-title animate-in delay-1">Projections &<br><span class="gradient-text">Targets</span></h2>
+                <p class="divider-sub animate-in delay-2">Realistic Output Goals & Quarterly Milestones for FY 2026-27</p>
+            </div>
+        </section>
+
+        <!-- SLIDE 15: Output Targets -->
+        <section class="slide slide-targets" data-slide="15">
+            <div class="slide-bg-orbs"><div class="orb orb-1"></div></div>
+            <div class="slide-content">
+                <div class="section-label animate-in">PROJECTIONS</div>
+                <h2 class="slide-heading animate-in delay-1">Output Targets — FY 2026-27</h2>
+                <div class="targets-table animate-in delay-2">
+                    <div class="target-row target-header-row">
+                        <span class="target-cell">Deliverable</span>
+                        <span class="target-cell">Monthly</span>
+                        <span class="target-cell">Annual</span>
+                        <span class="target-cell">Growth vs LY</span>
+                    </div>
+                    <div class="target-row">
+                        <span class="target-cell"><span class="target-dot dot-blue"></span>Social Media Creatives</span>
+                        <span class="target-cell">40-50</span>
+                        <span class="target-cell bold">500+</span>
+                        <span class="target-cell positive">↑ 25%</span>
+                    </div>
+                    <div class="target-row">
+                        <span class="target-cell"><span class="target-dot dot-purple"></span>Reels & Shorts</span>
+                        <span class="target-cell">8-10</span>
+                        <span class="target-cell bold">100+</span>
+                        <span class="target-cell positive">↑ 185%</span>
+                    </div>
+                    <div class="target-row">
+                        <span class="target-cell"><span class="target-dot dot-green"></span>Long-form Videos</span>
+                        <span class="target-cell">2-3</span>
+                        <span class="target-cell bold">30+</span>
+                        <span class="target-cell positive">↑ 50%</span>
+                    </div>
+                    <div class="target-row">
+                        <span class="target-cell"><span class="target-dot dot-orange"></span>Ad Campaign Creatives</span>
+                        <span class="target-cell">15-20</span>
+                        <span class="target-cell bold">200+</span>
+                        <span class="target-cell positive">↑ 30%</span>
+                    </div>
+                    <div class="target-row">
+                        <span class="target-cell"><span class="target-dot dot-pink"></span>Motion Graphics Posts</span>
+                        <span class="target-cell">8-10</span>
+                        <span class="target-cell bold">100+</span>
+                        <span class="target-cell new-badge">NEW</span>
+                    </div>
+                    <div class="target-row">
+                        <span class="target-cell"><span class="target-dot dot-cyan"></span>Brand Collaterals</span>
+                        <span class="target-cell">5-8</span>
+                        <span class="target-cell bold">70+</span>
+                        <span class="target-cell positive">↑ 20%</span>
+                    </div>
+                </div>
+                <div class="target-total animate-in delay-3">
+                    <span>Total Annual Creative Output Target:</span>
+                    <span class="gradient-text bold">1,000+ Pieces</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 16: Quarterly Milestones + Thank You -->
+        <section class="slide slide-milestones" data-slide="16">
+            <div class="slide-bg-orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+            <div class="slide-content">
+                <div class="section-label animate-in">PROJECTIONS</div>
+                <h2 class="slide-heading animate-in delay-1">Quarterly Milestones</h2>
+                <div class="timeline animate-in delay-2">
+                    <div class="timeline-item">
+                        <div class="timeline-quarter">Q1</div>
+                        <div class="timeline-period">Apr — Jun 2026</div>
+                        <div class="timeline-desc">Template system launch • Motion graphics kickoff • AI workflow setup</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-quarter">Q2</div>
+                        <div class="timeline-period">Jul — Sep 2026</div>
+                        <div class="timeline-desc">Video-first strategy fully live • Analytics integration • A/B testing framework</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-quarter">Q3</div>
+                        <div class="timeline-period">Oct — Dec 2026</div>
+                        <div class="timeline-desc">3D design elements • Advanced animation • Original asset library built</div>
+                    </div>
+                    <div class="timeline-item active-q">
+                        <div class="timeline-quarter">Q4</div>
+                        <div class="timeline-period">Jan — Mar 2027</div>
+                        <div class="timeline-desc">Full design system mature • Year-end review • Skills audit & next plan</div>
+                    </div>
+                </div>
+                <div class="cta-box animate-in delay-3">
+                    <h3>What I Need to Deliver This</h3>
+                    <div class="cta-items">
+                        <span class="cta-chip">🖥️ Hardware Upgrade (if needed)</span>
+                        <span class="cta-chip">📚 Training Budget for Courses</span>
+                        <span class="cta-chip">🔑 Premium Tool Licenses</span>
+                        <span class="cta-chip">⏰ Clear Brief & Feedback SLAs</span>
+                        <span class="cta-chip">🧪 Freedom to Experiment</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 17: Thank You -->
+        <section class="slide slide-title slide-thankyou" data-slide="17">
+            <div class="slide-bg-orbs">
+                <div class="orb orb-1"></div>
+                <div class="orb orb-2"></div>
+                <div class="orb orb-3"></div>
+            </div>
+            <div class="slide-content centered">
+                <div class="title-badge animate-in">THANK YOU</div>
+                <h1 class="hero-title animate-in delay-1">
+                    Let's Make<br>
+                    <span class="gradient-text">FY27 Iconic</span>
+                </h1>
+                <p class="hero-subtitle animate-in delay-2">Ready to elevate every pixel, every frame, every brand touchpoint.</p>
+                <div class="title-meta animate-in delay-3">
+                    <div class="meta-item">
+                        <span class="meta-label">Aman Kumar</span>
+                        <span class="meta-value">Graphic Designer & Video Editor</span>
+                    </div>
+                    <div class="meta-divider"></div>
+                    <div class="meta-item">
+                        <span class="meta-label">Digital Department</span>
+                        <span class="meta-value">Manmachine Group</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Keyboard hint overlay -->
+    <div class="keyboard-hint" id="keyboardHint">
+        <div class="hint-content">
+            <p>Use <kbd>←</kbd> <kbd>→</kbd> arrow keys or click the buttons to navigate</p>
+            <p>Press <kbd>F</kbd> for fullscreen</p>
+            <button class="hint-close" id="hintClose">Got it</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
