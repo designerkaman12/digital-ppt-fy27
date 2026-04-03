@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Department — Annual Review FY 2026-27</title>
+    <title>Aman Kumar — Individual Performance Review FY 2026-27</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -12,10 +12,16 @@
 <body>
     <div class="progress-bar" id="progressBar"></div>
 
-    <!-- Video Modal Overlay -->
+    <!-- Video Modal -->
     <div class="video-modal" id="videoModal">
         <button class="video-close" id="videoClose">✕</button>
         <div class="video-container" id="videoContainer"></div>
+    </div>
+
+    <!-- Image Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose">✕</button>
+        <img id="lightboxImg" src="" alt="">
     </div>
 
     <!-- Navigation -->
@@ -23,83 +29,65 @@
         <div class="nav-left">
             <span class="nav-brand" id="navBrand">DIGITAL DEPT.</span>
             <span class="nav-divider">|</span>
-            <span class="nav-subtitle" id="navYear">FY 2026-27</span>
+            <span class="nav-subtitle">FY 2026-27</span>
         </div>
-        <div class="nav-center">
-            <span class="slide-counter" id="slideCounter">01 / 05</span>
-        </div>
+        <div class="nav-center"><span class="slide-counter" id="slideCounter">01 / 05</span></div>
         <div class="nav-right">
-            <button class="nav-btn" id="prevBtn" aria-label="Previous">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-            </button>
-            <button class="nav-btn" id="nextBtn" aria-label="Next">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6 6"/></svg>
-            </button>
-            <button class="nav-btn" id="fullscreenBtn" aria-label="Fullscreen">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-            </button>
-            <a href="admin.html" class="nav-btn admin-link" title="Admin Panel">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
-            </a>
+            <button class="nav-btn" id="prevBtn" aria-label="Previous"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+            <button class="nav-btn" id="nextBtn" aria-label="Next"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6 6"/></svg></button>
+            <button class="nav-btn" id="fullscreenBtn" aria-label="Fullscreen"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></button>
+            <a href="admin.html" class="nav-btn admin-link" title="Admin Panel"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></a>
         </div>
     </nav>
 
-    <!-- Slides Container -->
+    <!-- Slides -->
     <div class="slides-wrapper" id="slidesWrapper">
 
-        <!-- SLIDE 1: Introduction -->
+        <!-- ===== SLIDE 1: MY ROLE & KRA ===== -->
         <section class="slide active" data-slide="1" id="slideIntro">
             <div class="slide-bg-orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
-            <div class="slide-content centered">
-                <div class="anim-el" data-delay="0">
-                    <div class="intro-badge" id="introBadge">ANNUAL BUSINESS PLAN & REVIEW</div>
-                </div>
-                <div class="anim-el" data-delay="1">
-                    <h1 class="hero-title" id="introTitle">Digital Department</h1>
-                    <h1 class="hero-title"><span class="gradient-text" id="introSubtitle">FY 2026-27</span></h1>
-                </div>
-                <div class="anim-el" data-delay="2">
-                    <p class="hero-subtitle" id="introDesc">Graphic Design & Video Production — Individual Performance Review</p>
-                </div>
-                <!-- Profile Image Placeholder -->
-                <div class="anim-el" data-delay="2">
-                    <div class="intro-image-wrap" id="introImageWrap" style="display:none">
-                        <img id="introImage" src="" alt="Profile" class="intro-profile-img">
+            <div class="slide-content">
+                <div class="intro-top">
+                    <div class="intro-left">
+                        <div class="anim-el" data-delay="0"><div class="intro-badge" id="introBadge">INDIVIDUAL PERFORMANCE REVIEW</div></div>
+                        <div class="anim-el" data-delay="1">
+                            <h1 class="hero-title" id="introTitle">Aman Kumar</h1>
+                            <p class="hero-role"><span class="gradient-text" id="introSubtitle">Visual Growth Strategist</span></p>
+                        </div>
+                        <div class="anim-el" data-delay="2">
+                            <p class="hero-desc" id="introDesc">Graphic Designer & Video Editor — Digital Department, Manmachine Group</p>
+                        </div>
+                        <div class="anim-el" data-delay="2">
+                            <div class="profile-img-wrap" id="introImageWrap" style="display:none">
+                                <img id="introImage" src="" alt="Profile" class="profile-img">
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Brand KRA Cards -->
                 <div class="anim-el" data-delay="3">
-                    <div class="presenter-card">
-                        <div class="meta-item">
-                            <span class="meta-label">PRESENTED BY</span>
-                            <span class="meta-value" id="presenterName">Aman Kumar</span>
-                        </div>
-                        <div class="meta-divider"></div>
-                        <div class="meta-item">
-                            <span class="meta-label">ROLE</span>
-                            <span class="meta-value" id="presenterRole">Graphic Designer & Video Editor</span>
-                        </div>
-                        <div class="meta-divider"></div>
-                        <div class="meta-item">
-                            <span class="meta-label">DEPARTMENT</span>
-                            <span class="meta-value" id="presenterDept">Digital Department</span>
-                        </div>
-                    </div>
+                    <h3 class="kra-heading">Brands I Handle & My KRA</h3>
+                    <div class="brand-kra-grid" id="brandKraGrid"></div>
                 </div>
+
+                <!-- Other Tasks -->
                 <div class="anim-el" data-delay="4">
-                    <div class="brands-row" id="brandsRow"></div>
+                    <div class="other-tasks-row" id="otherTasksRow"></div>
                 </div>
+
+                <!-- Visual Gallery -->
                 <div class="anim-el" data-delay="4">
-                    <div class="skills-row" id="skillsRow"></div>
+                    <div class="gallery-grid" id="introGallery"></div>
                 </div>
-                <!-- Video Play Button -->
+
                 <button class="video-play-btn" id="introVideoBtn" style="display:none" data-slide-key="intro">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                    <span>Play Video</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span>Play Video</span>
                 </button>
             </div>
         </section>
 
-        <!-- SLIDE 2: Last Year vs Current Year -->
+        <!-- ===== SLIDE 2: LAST YEAR → CURRENT YEAR ===== -->
         <section class="slide" data-slide="2" id="slideComparison">
             <div class="slide-bg-orbs"><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
             <div class="slide-content">
@@ -112,71 +100,47 @@
                         <span class="comp-label comp-current" id="compCurrentLabel">FY 2025-26</span>
                     </div>
                 </div>
-                <div class="anim-el" data-delay="2">
-                    <div class="stats-grid" id="compStatsGrid"></div>
-                </div>
-                <div class="anim-el" data-delay="3">
-                    <div class="achievements-box" id="compAchievements"></div>
-                </div>
-                <!-- Image Placeholder -->
-                <div class="slide-image-placeholder" id="compImageWrap" style="display:none">
-                    <img id="compImage" src="" alt="" class="slide-img">
-                </div>
+                <div class="anim-el" data-delay="2"><div class="stats-grid" id="compStatsGrid"></div></div>
+                <div class="anim-el" data-delay="3"><div class="achievements-box" id="compAchievements"></div></div>
+                <div class="anim-el" data-delay="3"><div class="gallery-grid" id="compGallery"></div></div>
                 <button class="video-play-btn" id="compVideoBtn" style="display:none" data-slide-key="comparison">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                    <span>Play Video</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span>Play Video</span>
                 </button>
             </div>
         </section>
 
-        <!-- SLIDE 3: Future Projections -->
+        <!-- ===== SLIDE 3: FUTURE PROJECTIONS ===== -->
         <section class="slide" data-slide="3" id="slideProjections">
             <div class="slide-bg-orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
             <div class="slide-content">
                 <div class="anim-el" data-delay="0"><div class="section-label">FUTURE PROJECTIONS</div></div>
                 <div class="anim-el" data-delay="1"><h2 class="slide-heading" id="projTitle">Where We're Heading Next</h2></div>
-                <div class="anim-el" data-delay="1">
-                    <div class="year-badge" id="projYearLabel">FY 2026-27 Targets</div>
-                </div>
-                <div class="anim-el" data-delay="2">
-                    <div class="proj-grid" id="projStatsGrid"></div>
-                </div>
-                <div class="anim-el" data-delay="3">
-                    <div class="impact-goals" id="projImpactGoals"></div>
-                </div>
-                <div class="slide-image-placeholder" id="projImageWrap" style="display:none">
-                    <img id="projImage" src="" alt="" class="slide-img">
-                </div>
+                <div class="anim-el" data-delay="1"><div class="year-badge" id="projYearLabel">FY 2026-27 Targets</div></div>
+                <div class="anim-el" data-delay="2"><div class="proj-grid" id="projStatsGrid"></div></div>
+                <div class="anim-el" data-delay="3"><div class="impact-goals" id="projImpactGoals"></div></div>
+                <div class="anim-el" data-delay="3"><div class="gallery-grid" id="projGallery"></div></div>
                 <button class="video-play-btn" id="projVideoBtn" style="display:none" data-slide-key="projections">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                    <span>Play Video</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span>Play Video</span>
                 </button>
             </div>
         </section>
 
-        <!-- SLIDE 4: Strategy -->
+        <!-- ===== SLIDE 4: STRATEGY ===== -->
         <section class="slide" data-slide="4" id="slideStrategy">
             <div class="slide-bg-orbs"><div class="orb orb-1"></div><div class="orb orb-3"></div></div>
             <div class="slide-content">
                 <div class="anim-el" data-delay="0"><div class="section-label">STRATEGY & ROADMAP</div></div>
                 <div class="anim-el" data-delay="1"><h2 class="slide-heading" id="stratTitle">The Roadmap to Get There</h2></div>
-                <div class="anim-el" data-delay="2">
-                    <div class="strategy-grid" id="stratGrid"></div>
-                </div>
-                <div class="anim-el" data-delay="3">
-                    <div class="milestones-row" id="stratMilestones"></div>
-                </div>
-                <div class="slide-image-placeholder" id="stratImageWrap" style="display:none">
-                    <img id="stratImage" src="" alt="" class="slide-img">
-                </div>
+                <div class="anim-el" data-delay="2"><div class="strategy-grid" id="stratGrid"></div></div>
+                <div class="anim-el" data-delay="3"><div class="milestones-row" id="stratMilestones"></div></div>
+                <div class="anim-el" data-delay="3"><div class="gallery-grid" id="stratGallery"></div></div>
                 <button class="video-play-btn" id="stratVideoBtn" style="display:none" data-slide-key="strategy">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                    <span>Play Video</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span>Play Video</span>
                 </button>
             </div>
         </section>
 
-        <!-- SLIDE 5: Thank You -->
+        <!-- ===== SLIDE 5: THANK YOU ===== -->
         <section class="slide" data-slide="5" id="slideThankyou">
             <div class="slide-bg-orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
             <div class="slide-content centered">
@@ -185,31 +149,18 @@
                     <h1 class="hero-title" id="tyTitle">Let's Make</h1>
                     <h1 class="hero-title"><span class="gradient-text" id="tyHighlight">FY27 Iconic</span></h1>
                 </div>
-                <div class="anim-el" data-delay="2">
-                    <p class="hero-subtitle" id="tySubtitle">Ready to elevate every pixel, every frame, every brand touchpoint.</p>
-                </div>
-                <div class="anim-el" data-delay="3">
-                    <div class="asks-row" id="tyAsks"></div>
-                </div>
+                <div class="anim-el" data-delay="2"><p class="hero-desc ty-subtitle" id="tySubtitle">Ready to elevate every pixel, every frame, every brand touchpoint.</p></div>
+                <div class="anim-el" data-delay="3"><div class="asks-row" id="tyAsks"></div></div>
                 <div class="anim-el" data-delay="3">
                     <div class="presenter-card">
-                        <div class="meta-item">
-                            <span class="meta-label" id="tyName2">AMAN KUMAR</span>
-                            <span class="meta-value" id="tyRole2">Graphic Designer & Video Editor</span>
-                        </div>
+                        <div class="meta-item"><span class="meta-label" id="tyName2">AMAN KUMAR</span><span class="meta-value" id="tyRole2">Graphic Designer & Video Editor</span></div>
                         <div class="meta-divider"></div>
-                        <div class="meta-item">
-                            <span class="meta-label" id="tyDept2">DIGITAL DEPARTMENT</span>
-                            <span class="meta-value" id="tyCompany2">Manmachine Group</span>
-                        </div>
+                        <div class="meta-item"><span class="meta-label" id="tyDept2">DIGITAL DEPARTMENT</span><span class="meta-value" id="tyCompany2">Manmachine Group</span></div>
                     </div>
                 </div>
-                <div class="slide-image-placeholder" id="tyImageWrap" style="display:none">
-                    <img id="tyImage" src="" alt="" class="slide-img">
-                </div>
+                <div class="anim-el" data-delay="3"><div class="gallery-grid" id="tyGallery"></div></div>
                 <button class="video-play-btn" id="tyVideoBtn" style="display:none" data-slide-key="thankyou">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                    <span>Play Video</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span>Play Video</span>
                 </button>
             </div>
         </section>
