@@ -1,234 +1,340 @@
 /* ============================================
-   DIGITAL DEPARTMENT PPT — SLIDE ENGINE
-   Navigation, Animations, Counter Effects
+   PPT PRESENTATION ENGINE
+   Renders content from config, handles navigation,
+   animations, counters, and video playback
    ============================================ */
-
 (function () {
     'use strict';
 
-    // State
     let currentSlide = 1;
-    const totalSlides = document.querySelectorAll('.slide').length;
-    const slides = document.querySelectorAll('.slide');
-    const progressBar = document.getElementById('progressBar');
-    const slideCounter = document.getElementById('slideCounter');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const fullscreenBtn = document.getElementById('fullscreenBtn');
-    const keyboardHint = document.getElementById('keyboardHint');
-    const hintClose = document.getElementById('hintClose');
+    const totalSlides = 5;
+    let config = getConfig();
 
-    // Initialize
     function init() {
+        applyTheme();
+        renderAllSlides();
         updateSlide(1);
         bindEvents();
-        showHint();
     }
 
-    // Show/hide keyboard hint
-    function showHint() {
-        if (sessionStorage.getItem('ppt-hint-shown')) {
-            keyboardHint.classList.add('hidden');
-            return;
-        }
-        setTimeout(() => {
-            keyboardHint.classList.add('hidden');
-            sessionStorage.setItem('ppt-hint-shown', 'true');
-        }, 5000);
+    // ---- THEME ----
+    function applyTheme() {
+        document.documentElement.style.cssText = getThemeCSS(config);
+        // Animation class
+        document.body.className = '';
+        document.body.classList.add('anim-' + (config.animation || 'fade-up'));
+        document.body.classList.add('anim-' + (config.animationSpeed || 'normal'));
     }
 
-    hintClose.addEventListener('click', () => {
-        keyboardHint.classList.add('hidden');
-        sessionStorage.setItem('ppt-hint-shown', 'true');
-    });
+    // ---- RENDER ALL SLIDES ----
+    function renderAllSlides() {
+        renderIntro();
+        renderComparison();
+        renderProjections();
+        renderStrategy();
+        renderThankyou();
+    }
 
-    // Update slide
+    function renderIntro() {
+        const s = config.slides.intro;
+        const p = config.presenter;
+        setText('introBadge', s.badge);
+        setText('introTitle', s.title);
+        setText('introSubtitle', s.subtitle);
+        setText('introDesc', s.description);
+        setText('presenterName', p.name);
+        setText('presenterRole', p.role);
+        setText('presenterDept', p.department);
+
+        // Profile image
+        const imgWrap = document.getElementById('introImageWrap');
+        const img = document.getElementById('introImage');
+        if (s.profileImage) { img.src = s.profileImage; imgWrap.style.display = 'block'; }
+        else { imgWrap.style.display = 'none'; }
+
+        // Brands
+        const brandsRow = document.getElementById('brandsRow');
+        brandsRow.innerHTML = (s.brands || []).map(b =>
+            `<span class="brand-chip">${b.logo ? `<img src="${b.logo}" style="height:14px;margin-right:4px;vertical-align:middle">` : ''}${b.name}</span>`
+        ).join('');
+
+        // Skills
+        const skillsRow = document.getElementById('skillsRow');
+        skillsRow.innerHTML = (s.skills || []).map(sk => `<span class="skill-tag">${sk}</span>`).join('');
+
+        // Video
+        setupVideoBtn('introVideoBtn', s.video);
+    }
+
+    function renderComparison() {
+        const s = config.slides.comparison;
+        setText('compTitle', s.title);
+        setText('compLastLabel', s.lastYearLabel);
+        setText('compCurrentLabel', s.currentYearLabel);
+
+        const grid = document.getElementById('compStatsGrid');
+        grid.innerHTML = (s.stats || []).map(st => {
+            const pctChange = st.isLower
+                ? Math.round((1 - st.currentYear / st.lastYear) * 100) + '% faster'
+                : (st.lastYear === 0 ? 'NEW' : '↑' + Math.round((st.currentYear / st.lastYear - 1) * 100) + '%');
+            return `
+                <div class="stat-card">
+                    <div class="stat-icon">${st.icon}</div>
+                    <div class="stat-label">${st.label}</div>
+                    <div class="stat-compare">
+                        <span class="stat-old">${st.lastYear}${st.suffix}</span>
+                        <span class="stat-arrow">→</span>
+                        <span class="stat-new counter" data-target="${st.currentYear}" data-suffix="${st.suffix}">${st.currentYear}${st.suffix}</span>
+                    </div>
+                    <div class="stat-growth ${st.isLower ? 'down' : ''}">${pctChange}</div>
+                </div>`;
+        }).join('');
+
+        // Achievements
+        const achBox = document.getElementById('compAchievements');
+        if (s.achievements && s.achievements.length) {
+            achBox.style.display = 'block';
+            achBox.innerHTML = `<h4>KEY ACHIEVEMENTS</h4>` +
+                s.achievements.map(a => `<div class="ach-item"><span class="ach-check">✓</span>${a}</div>`).join('');
+        } else { achBox.style.display = 'none'; }
+
+        setupImage('compImageWrap', 'compImage', s.image);
+        setupVideoBtn('compVideoBtn', s.video);
+    }
+
+    function renderProjections() {
+        const s = config.slides.projections;
+        setText('projTitle', s.title);
+        setText('projYearLabel', s.yearLabel);
+
+        const grid = document.getElementById('projStatsGrid');
+        grid.innerHTML = (s.stats || []).map(st => `
+            <div class="proj-card">
+                <div class="proj-icon">${st.icon}</div>
+                <div class="proj-number counter" data-target="${st.target}" data-suffix="${st.suffix}">${st.target}${st.suffix}</div>
+                <div class="proj-label">${st.label}</div>
+                <span class="proj-growth ${st.growth === 'NEW' ? 'new-tag' : ''}">
+                    ${st.growth === 'NEW' ? 'NEW' : '↑ ' + st.growth}
+                </span>
+            </div>
+        `).join('');
+
+        const goals = document.getElementById('projImpactGoals');
+        goals.innerHTML = (s.impactGoals || []).map(g => `
+            <div class="impact-chip">
+                <span class="impact-metric">${g.metric}</span>
+                <span class="impact-target">${g.target}</span>
+            </div>
+        `).join('');
+
+        setupImage('projImageWrap', 'projImage', s.image);
+        setupVideoBtn('projVideoBtn', s.video);
+    }
+
+    function renderStrategy() {
+        const s = config.slides.strategy;
+        setText('stratTitle', s.title);
+
+        const grid = document.getElementById('stratGrid');
+        grid.innerHTML = (s.strategies || []).map(st => `
+            <div class="strat-card">
+                <div class="strat-header">
+                    <span class="strat-icon">${st.icon}</span>
+                    <span class="strat-tag">${st.tag}</span>
+                </div>
+                <h4>${st.title}</h4>
+                <p>${st.description}</p>
+            </div>
+        `).join('');
+
+        const miles = document.getElementById('stratMilestones');
+        miles.innerHTML = (s.milestones || []).map(m => `
+            <div class="milestone">
+                <div class="mile-q">${m.quarter}</div>
+                <div class="mile-period">${m.period}</div>
+                <div class="mile-goal">${m.goal}</div>
+            </div>
+        `).join('');
+
+        setupImage('stratImageWrap', 'stratImage', s.image);
+        setupVideoBtn('stratVideoBtn', s.video);
+    }
+
+    function renderThankyou() {
+        const s = config.slides.thankyou;
+        const p = config.presenter;
+        setText('tyTitle', s.title);
+        setText('tyHighlight', s.highlight);
+        setText('tySubtitle', s.subtitle);
+        setText('tyName2', p.name.toUpperCase());
+        setText('tyRole2', p.role);
+        setText('tyDept2', p.department.toUpperCase());
+        setText('tyCompany2', p.company);
+
+        const asks = document.getElementById('tyAsks');
+        asks.innerHTML = (s.asks || []).map(a => `<span class="ask-chip">${a}</span>`).join('');
+
+        setupImage('tyImageWrap', 'tyImage', s.image);
+        setupVideoBtn('tyVideoBtn', s.video);
+    }
+
+    // ---- HELPERS ----
+    function setText(id, text) {
+        const el = document.getElementById(id);
+        if (el && text !== undefined) el.textContent = text;
+    }
+    function setupImage(wrapId, imgId, url) {
+        const wrap = document.getElementById(wrapId);
+        const img = document.getElementById(imgId);
+        if (url) { img.src = url; wrap.style.display = 'block'; }
+        else { wrap.style.display = 'none'; }
+    }
+    function setupVideoBtn(btnId, url) {
+        const btn = document.getElementById(btnId);
+        if (url) { btn.style.display = 'flex'; }
+        else { btn.style.display = 'none'; }
+    }
+
+    // ---- NAVIGATION ----
     function updateSlide(n) {
         if (n < 1 || n > totalSlides) return;
-
-        // Remove active from all
-        slides.forEach(s => s.classList.remove('active'));
-
+        document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
         currentSlide = n;
-
-        // Add active to current
-        const activeSlide = document.querySelector(`[data-slide="${currentSlide}"]`);
-        if (activeSlide) {
-            activeSlide.classList.add('active');
+        const active = document.querySelector(`[data-slide="${n}"]`);
+        if (active) {
+            active.classList.add('active');
+            triggerAnimations(active);
+            animateCounters(active);
         }
-
-        // Update progress bar
-        const progress = (currentSlide / totalSlides) * 100;
-        progressBar.style.width = progress + '%';
-
-        // Update counter
-        const current = String(currentSlide).padStart(2, '0');
-        const total = String(totalSlides).padStart(2, '0');
-        slideCounter.textContent = `${current} / ${total}`;
-
-        // Update button states
-        prevBtn.style.opacity = currentSlide === 1 ? '0.3' : '1';
-        prevBtn.style.pointerEvents = currentSlide === 1 ? 'none' : 'auto';
-        nextBtn.style.opacity = currentSlide === totalSlides ? '0.3' : '1';
-        nextBtn.style.pointerEvents = currentSlide === totalSlides ? 'none' : 'auto';
-
-        // Trigger counter animations if on metrics slide
-        if (activeSlide && activeSlide.classList.contains('slide-dashboard')) {
-            animateCounters(activeSlide);
-        }
+        document.getElementById('progressBar').style.width = (n / totalSlides * 100) + '%';
+        document.getElementById('slideCounter').textContent =
+            String(n).padStart(2, '0') + ' / ' + String(totalSlides).padStart(2, '0');
+        document.getElementById('prevBtn').style.opacity = n === 1 ? '0.3' : '1';
+        document.getElementById('prevBtn').style.pointerEvents = n === 1 ? 'none' : 'auto';
+        document.getElementById('nextBtn').style.opacity = n === totalSlides ? '0.3' : '1';
+        document.getElementById('nextBtn').style.pointerEvents = n === totalSlides ? 'none' : 'auto';
     }
 
-    // Navigate
-    function goNext() {
-        if (currentSlide < totalSlides) {
-            updateSlide(currentSlide + 1);
-        }
+    function triggerAnimations(slide) {
+        const els = slide.querySelectorAll('.anim-el');
+        els.forEach(el => el.classList.remove('visible'));
+        els.forEach((el, i) => {
+            const delay = parseInt(el.getAttribute('data-delay') || i) * 150;
+            setTimeout(() => el.classList.add('visible'), delay + 50);
+        });
     }
 
-    function goPrev() {
-        if (currentSlide > 1) {
-            updateSlide(currentSlide - 1);
-        }
-    }
-
-    // Counter animation
     function animateCounters(slide) {
-        const counters = slide.querySelectorAll('.metric-number');
-        counters.forEach(counter => {
-            const target = parseInt(counter.getAttribute('data-target'));
+        const counters = slide.querySelectorAll('.counter');
+        counters.forEach(c => {
+            const target = parseInt(c.getAttribute('data-target'));
+            const suffix = c.getAttribute('data-suffix') || '';
             if (isNaN(target)) return;
-
-            const duration = 1500;
-            const startTime = performance.now();
-
+            const start = performance.now();
+            const duration = 1200;
             function tick(now) {
-                const elapsed = now - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-
-                // Ease out cubic
-                const eased = 1 - Math.pow(1 - progress, 3);
-                const current = Math.round(eased * target);
-
-                if (counter.classList.contains('suffix-hrs')) {
-                    counter.textContent = current + ' hrs';
-                } else {
-                    counter.textContent = current + '+';
-                }
-
-                if (progress < 1) {
-                    requestAnimationFrame(tick);
-                }
+                const p = Math.min((now - start) / duration, 1);
+                const eased = 1 - Math.pow(1 - p, 3);
+                c.textContent = Math.round(eased * target) + suffix;
+                if (p < 1) requestAnimationFrame(tick);
             }
-
             requestAnimationFrame(tick);
         });
     }
 
-    // Fullscreen toggle
-    function toggleFullscreen() {
-        if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen().catch(() => { });
+    // ---- VIDEO MODAL ----
+    function openVideo(slideKey) {
+        const slides = config.slides;
+        const url = slides[slideKey] ? slides[slideKey].video : '';
+        if (!url) return;
+        const embed = getVideoEmbed(url);
+        const container = document.getElementById('videoContainer');
+        if (embed.match(/\.(mp4|webm|ogg)$/i)) {
+            container.innerHTML = `<video controls autoplay><source src="${embed}"></video>`;
         } else {
-            document.exitFullscreen().catch(() => { });
+            container.innerHTML = `<iframe src="${embed}" allowfullscreen allow="autoplay; encrypted-media"></iframe>`;
         }
+        document.getElementById('videoModal').classList.add('active');
+    }
+    function closeVideo() {
+        document.getElementById('videoModal').classList.remove('active');
+        document.getElementById('videoContainer').innerHTML = '';
     }
 
-    // Bind events
+    // ---- EVENTS ----
     function bindEvents() {
+        document.getElementById('prevBtn').addEventListener('click', () => updateSlide(currentSlide - 1));
+        document.getElementById('nextBtn').addEventListener('click', () => updateSlide(currentSlide + 1));
+        document.getElementById('fullscreenBtn').addEventListener('click', () => {
+            if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => {});
+            else document.exitFullscreen().catch(() => {});
+        });
+
+        // Video buttons
+        document.querySelectorAll('.video-play-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openVideo(btn.getAttribute('data-slide-key'));
+            });
+        });
+        document.getElementById('videoClose').addEventListener('click', closeVideo);
+        document.getElementById('videoModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('videoModal')) closeVideo();
+        });
+
         // Keyboard
         document.addEventListener('keydown', (e) => {
+            if (document.getElementById('videoModal').classList.contains('active')) {
+                if (e.key === 'Escape') closeVideo();
+                return;
+            }
             switch (e.key) {
-                case 'ArrowRight':
-                case 'ArrowDown':
-                case ' ':
-                case 'Enter':
-                    e.preventDefault();
-                    goNext();
-                    break;
-                case 'ArrowLeft':
-                case 'ArrowUp':
-                    e.preventDefault();
-                    goPrev();
-                    break;
-                case 'Home':
-                    e.preventDefault();
-                    updateSlide(1);
-                    break;
-                case 'End':
-                    e.preventDefault();
-                    updateSlide(totalSlides);
-                    break;
-                case 'f':
-                case 'F':
-                    toggleFullscreen();
-                    break;
-                case 'Escape':
-                    if (keyboardHint && !keyboardHint.classList.contains('hidden')) {
-                        keyboardHint.classList.add('hidden');
-                    }
-                    break;
+                case 'ArrowRight': case 'ArrowDown': case ' ': case 'Enter':
+                    e.preventDefault(); updateSlide(currentSlide + 1); break;
+                case 'ArrowLeft': case 'ArrowUp':
+                    e.preventDefault(); updateSlide(currentSlide - 1); break;
+                case 'f': case 'F':
+                    if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => {});
+                    else document.exitFullscreen().catch(() => {}); break;
+                case 'Home': e.preventDefault(); updateSlide(1); break;
+                case 'End': e.preventDefault(); updateSlide(totalSlides); break;
             }
         });
 
-        // Navigation buttons
-        prevBtn.addEventListener('click', goPrev);
-        nextBtn.addEventListener('click', goNext);
-        fullscreenBtn.addEventListener('click', toggleFullscreen);
-
-        // Touch/Swipe support
-        let touchStartX = 0;
-        let touchStartY = 0;
-
-        document.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-            touchStartY = e.changedTouches[0].screenY;
+        // Touch
+        let tx = 0;
+        document.addEventListener('touchstart', e => { tx = e.changedTouches[0].screenX; }, { passive: true });
+        document.addEventListener('touchend', e => {
+            const dx = tx - e.changedTouches[0].screenX;
+            if (Math.abs(dx) > 50) { dx > 0 ? updateSlide(currentSlide + 1) : updateSlide(currentSlide - 1); }
         }, { passive: true });
 
-        document.addEventListener('touchend', (e) => {
-            const touchEndX = e.changedTouches[0].screenX;
-            const touchEndY = e.changedTouches[0].screenY;
-            const diffX = touchStartX - touchEndX;
-            const diffY = touchStartY - touchEndY;
-
-            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
-                if (diffX > 0) {
-                    goNext();
-                } else {
-                    goPrev();
-                }
-            }
+        // Wheel
+        let wt;
+        document.addEventListener('wheel', e => {
+            clearTimeout(wt);
+            wt = setTimeout(() => {
+                if (e.deltaY > 30) updateSlide(currentSlide + 1);
+                else if (e.deltaY < -30) updateSlide(currentSlide - 1);
+            }, 100);
         }, { passive: true });
 
-        // Mouse wheel
-        let wheelTimeout;
-        document.addEventListener('wheel', (e) => {
-            clearTimeout(wheelTimeout);
-            wheelTimeout = setTimeout(() => {
-                if (e.deltaY > 30) goNext();
-                else if (e.deltaY < -30) goPrev();
-            }, 80);
-        }, { passive: true });
+        // Click nav
+        document.addEventListener('click', e => {
+            if (e.target.closest('.slide-nav, .video-modal, a, button, input')) return;
+            e.clientX > window.innerWidth / 3 ? updateSlide(currentSlide + 1) : updateSlide(currentSlide - 1);
+        });
 
-        // Click on slide to advance (but not on nav or interactive elements)
-        document.addEventListener('click', (e) => {
-            const nav = document.getElementById('slideNav');
-            const hint = document.getElementById('keyboardHint');
-
-            if (nav && nav.contains(e.target)) return;
-            if (hint && hint.contains(e.target)) return;
-            if (e.target.closest('a, button, input')) return;
-
-            // Right 2/3 of screen = next, left 1/3 = prev
-            const x = e.clientX;
-            const width = window.innerWidth;
-            if (x > width / 3) {
-                goNext();
-            } else {
-                goPrev();
+        // Listen for config changes from admin (same-origin)
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'ppt-config') {
+                config = getConfig();
+                applyTheme();
+                renderAllSlides();
+                updateSlide(currentSlide);
             }
         });
     }
 
-    // Go!
     init();
 })();
